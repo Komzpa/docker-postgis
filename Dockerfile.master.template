@@ -88,13 +88,12 @@ RUN set -ex \
 
 ARG DOCKER_CMAKE_BUILD_TYPE
 ENV DOCKER_CMAKE_BUILD_TYPE=${DOCKER_CMAKE_BUILD_TYPE}
+ENV NLOHMANN_JSON_VERSION=3.12.0
 
 # nlohmann/json - header-only library for SFCGAL (with CMake support)
 RUN set -ex \
     && mkdir -p /usr/src \
     && cd /usr/src \
-    # Get the latest release version dynamically
-    && NLOHMANN_JSON_VERSION=$(curl -s https://api.github.com/repos/nlohmann/json/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/') \
     && echo "Installing nlohmann/json version: ${NLOHMANN_JSON_VERSION}" \
     # Download and extract the full source with CMake support
     && curl -L "https://github.com/nlohmann/json/archive/refs/tags/v${NLOHMANN_JSON_VERSION}.tar.gz" -o nlohmann-json.tar.gz \
