@@ -376,7 +376,6 @@ if [ "$fullMatrixUpdate" = true ]; then
         fi
         echo "build_targets:"
         printf '%s\n' "${matrixEntries[@]}"
-        echo
     } > "$matrixFile"
 else
     echo "Preserving ${matrixFile}; run ./update.sh with no version arguments to regenerate the full CI matrix."
